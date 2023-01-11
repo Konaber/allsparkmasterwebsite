@@ -2,6 +2,7 @@ from flask import Blueprint, render_template
 from wakeonlan import send_magic_packet
 import paramiko
 import time
+from json import load
 
 start_valheim_server_blueprint = Blueprint(name='start_valheim_server', import_name=__name__)
 

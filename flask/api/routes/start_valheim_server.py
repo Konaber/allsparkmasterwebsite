@@ -41,4 +41,6 @@ def start_valheim_server():
 
     ssh.close()
 
+    print("finished starting valheim server")
+
     return render_template("index.html")

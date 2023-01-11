@@ -43,7 +43,7 @@ def stop_valheim_server():
 
     stdin, stdout, stderr = ssh.exec_command('sudo shutdown -P now', get_pty=True)
     time.sleep(1)
-    stdin.write(strCommodusPw)
+    stdin.write(commodus_user_password)
     stdin.write("\n")
     time.sleep(1)
     stdin.flush()

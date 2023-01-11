@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<title>Allspark</title>
+
+{% endblock %}
+
+
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <div class="notification is-danger">
+        {{ messages[0] }}
+    </div>
+{% endif %}
+{% endwith %}
+
+<h1>Allspark</h1>
+<p align="left">
+    <a href=start_valheim_server>
+        <button class=grey style="height:75px;width:150px">
+            Start Valheim Server
+        </button>
+    </a>
+    <br>
+    <a href=stop_valheim_server>
+        <button class=grey style="height:75px;width:150px">
+            Stop Valheim Server
+        </button>
+    </a>
+</p>
+
+{% endblock %}

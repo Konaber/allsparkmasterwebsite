@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash
+from flask import Blueprint, render_template
 import paramiko
 import time
 from json import load
@@ -52,7 +52,6 @@ def stop_valheim_server():
 
     ssh.close()
 
-    print("finished stopping valheim server")
-    flash("finished stopping valheim server")
+    print("finished starting valheim server")
 
     return render_template("index.html")

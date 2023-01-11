@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash
+from flask import Blueprint, render_template
 from wakeonlan import send_magic_packet
 import paramiko
 import time
@@ -42,6 +42,5 @@ def start_valheim_server():
     ssh.close()
 
     print("finished starting valheim server")
-    flash("finished starting valheim server")
 
     return render_template("index.html")

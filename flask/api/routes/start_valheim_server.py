@@ -21,7 +21,7 @@ def start_valheim_server():
         valheim_user_name = secrets["valheim_user_name"]
         valheim_user_password = secrets["valheim_user_password"]
         allspark_mac_address = secrets["allspark_mac_address"]
-        allsparl_ip_address = secrets["allspark_ip_address"]
+        allspark_ip_address = secrets["allspark_ip_address"]
 
     except FileNotFoundError as err:
 
@@ -29,9 +29,9 @@ def start_valheim_server():
 
     send_magic_packet(allspark_mac_address)
 
-    time.sleep(30)
+    time.sleep(60)
 
-    ssh.connect(allsparl_ip_address, username=valheim_user_name, password=valheim_user_password, timeout=10)
+    ssh.connect(allspark_ip_address, username=valheim_user_name, password=valheim_user_password, timeout=10)
 
     time.sleep(1)
 

@@ -8,10 +8,12 @@ def create_app():
     # Import all the routes
     from routes.index import index_blueprint
     from routes.start_valheim_server import start_valheim_server_blueprint
+    from routes.stop_valheim_server import stop_valheim_server_blueprint
 
     # Register the different routes from the submodules
     app.register_blueprint(index_blueprint)
     app.register_blueprint(start_valheim_server_blueprint)
+    app.register_blueprint(stop_valheim_server_blueprint)
 
     return app
 

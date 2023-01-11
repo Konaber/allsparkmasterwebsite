@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template
+from wakeonlan import send_magic_packet
+import time
 
 start_valheim_server_blueprint = Blueprint(name='start_valheim_server', import_name=__name__)
 
@@ -18,8 +20,7 @@ def start_valheim_server():
 
     except FileNotFoundError as err:
 
-        utils.errorPrint(err)
-        utils.fatalError("Config read-out failed")
+        print("reading .secrets.json failed")
 
     send_magic_packet(allspark_mac_address)
 

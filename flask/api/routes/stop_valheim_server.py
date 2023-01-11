@@ -19,8 +19,7 @@ def stop_valheim_server():
 
     except FileNotFoundError as err:
 
-        utils.errorPrint(err)
-        utils.fatalError("Config read-out failed")
+        print("reading .secrets.json failed")
 
     ssh.connect(allsparl_ip_address, username=valheim_user_name, password=valheim_user_password, timeout=10)
 

@@ -7,6 +7,9 @@ stop_valheim_server_blueprint = Blueprint(name='stop_valheim_server', import_nam
 def stop_valheim_server():
     print("stopping valheim server")
 
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
     try:
         with open("../configs/secret.json", "r") as json_file:
             secrets = load(json_file)

@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template
 from wakeonlan import send_magic_packet
+import paramiko
 import time
 
 start_valheim_server_blueprint = Blueprint(name='start_valheim_server', import_name=__name__)
@@ -8,6 +9,9 @@ start_valheim_server_blueprint = Blueprint(name='start_valheim_server', import_n
 @start_valheim_server_blueprint.route("/start_valheim_server", methods=['POST', 'GET'])
 def start_valheim_server():
     print("starting valheim server")
+
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
     try:
         with open("../configs/secret.json", "r") as json_file:

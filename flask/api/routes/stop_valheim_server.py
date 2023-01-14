@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-import paramiko
+from utils.ssh_connection import connect, disconnect, send_command, send_shutdown
 import time
 from json import load
 
@@ -9,9 +9,6 @@ stop_valheim_server_blueprint = Blueprint(name='stop_valheim_server', import_nam
 @stop_valheim_server_blueprint.route("/stop_valheim_server", methods=['POST', 'GET'])
 def stop_valheim_server():
     print("stopping valheim server")
-
-    ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
     try:
         with open("../configs/secret.json", "r") as json_file:
@@ -27,30 +24,19 @@ def stop_valheim_server():
 
         print("reading .secrets.json failed")
 
-    ssh.connect(allspark_ip_address, username=valheim_user_name, password=valheim_user_password, timeout=10)
+    connect(allspark_ip_address, valheim_user_name, valheim_user_password)
 
     time.sleep(1)
 
-    ssh.exec_command("./vhserver stop")
+    send_command("./vhserver stop")
 
     time.sleep(1)
 
-    ssh.close()
+    disconnect()
 
     time.sleep(1)
 
-    ssh.connect(allspark_ip_address, username=commodus_user_name, password=commodus_user_password, timeout=10)
-
-    stdin, stdout, stderr = ssh.exec_command('sudo shutdown -P now', get_pty=True)
-    time.sleep(1)
-    stdin.write(commodus_user_password)
-    stdin.write("\n")
-    time.sleep(1)
-    stdin.flush()
-
-    time.sleep(1)
-
-    ssh.close()
+    send_shutdown(allspark_ip_address, commodus_user_name, commodus_user_password)
 
     print("finished stopping valheim server")
 

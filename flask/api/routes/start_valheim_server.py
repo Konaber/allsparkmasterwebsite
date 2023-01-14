@@ -3,6 +3,7 @@ from wakeonlan import send_magic_packet
 import paramiko
 import time
 from json import load
+from utils.ssh_connection import connect, disconnect, send_command
 
 start_valheim_server_blueprint = Blueprint(name='start_valheim_server', import_name=__name__)
 
@@ -10,9 +11,6 @@ start_valheim_server_blueprint = Blueprint(name='start_valheim_server', import_n
 @start_valheim_server_blueprint.route("/start_valheim_server", methods=['POST', 'GET'])
 def start_valheim_server():
     print("starting valheim server")
-
-    ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
     try:
         with open("../configs/secret.json", "r") as json_file:
@@ -29,17 +27,17 @@ def start_valheim_server():
 
     send_magic_packet(allspark_mac_address)
 
-    time.sleep(60)
+    #time.sleep(60)
 
-    ssh.connect(allspark_ip_address, username=valheim_user_name, password=valheim_user_password, timeout=10)
-
-    time.sleep(1)
-
-    ssh.exec_command("./vhserver start")
+    connect(allspark_ip_address, valheim_user_name, valheim_user_password)
 
     time.sleep(1)
 
-    ssh.close()
+    send_command("./vhserver start")
+
+    time.sleep(1)
+
+    disconnect()
 
     print("finished starting valheim server")
 

@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template
 from wakeonlan import send_magic_packet
-import paramiko
 import time
 from json import load
 from utils.ssh_connection import connect, disconnect, send_command
@@ -27,7 +26,7 @@ def start_valheim_server():
 
     send_magic_packet(allspark_mac_address)
 
-    #time.sleep(60)
+    time.sleep(60)
 
     connect(allspark_ip_address, valheim_user_name, valheim_user_password)
 

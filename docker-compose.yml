@@ -2,7 +2,7 @@ version: "3"
 services:
   allsparkmasterwebsite-flask-app:
     container_name: allsparkmasterwebsite-flask-app
-    image: python:3.9-slim
+    image: python:3.10.9-slim
     restart: always
     command: sh -c "pip3 install -r /allsparkmasterwebsite/configs/requirements.txt && cd /allsparkmasterwebsite/api && gunicorn app:app -w 4 -b 0.0.0.0:8000"
     ports: 

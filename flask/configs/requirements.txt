@@ -1,5 +1,4 @@
 attrs==21.4.0
-autopep8==1.7.0
 bcrypt==4.0.1
 branca==0.4.2
 certifi==2021.10.8
@@ -30,7 +29,6 @@ pluggy==1.0.0
 protobuf==3.20.1
 psycopg2-binary==2.9.3
 py==1.11.0
-pycodestyle==2.8.0
 pycparser==2.21
 pyflakes==2.4.0
 PyMySQL==1.0.2

@@ -7,3 +7,4 @@ flask/tests/test-reports/
 flask/README.md
 flask/configs/secret.json
 flask/tests/routes/__pycache__/
+flask/api/utils/__pycache__/
